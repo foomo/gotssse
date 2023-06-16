@@ -1,0 +1,12 @@
+# define go module mode
+# module:
+#   name: github.com/foomo/gotssse/internal/test
+#   path: ./server
+targets:
+  service:
+    services:
+      /service: Service
+    package: github.com/foomo/gotssse/internal/test
+    tsrpc:
+      - Service
+
