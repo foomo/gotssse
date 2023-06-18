@@ -75,14 +75,11 @@ func (sse *channelSSE) run(
 		case newConnection := <-sse.chanConnect:
 			_, exists := connections[newConnection.chanMsg]
 			if exists {
-				l.Info("closing connection")
 				delete(connections, newConnection.chanMsg)
 			} else {
-				l.Info("new connection")
 				connections[newConnection.chanMsg] = newConnection
 			}
 		case collabStateToBroadcast := <-chanPublish:
-			l.Info("incoming url to be broadcasted")
 			for _, conn := range connections {
 				if conn.audience == collabStateToBroadcast.audience {
 					_, ok := conn.events[collabStateToBroadcast.event]
